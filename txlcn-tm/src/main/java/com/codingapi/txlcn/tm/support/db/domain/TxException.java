@@ -15,7 +15,7 @@
  */
 package com.codingapi.txlcn.tm.support.db.domain;
 
-import com.codingapi.txlcn.txmsg.params.TxExceptionParams;
+//import com.codingapi.txlcn.txmsg.params.TxExceptionParams;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
