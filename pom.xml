@@ -7,7 +7,12 @@
     <artifactId>20190731springbootsecurity</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
+    <modules>
+        <module>eureka</module>
+        <module>server-project-one</module>
+        <module>security-core</module>
+        <module>txlcn-tm</module>
+    </modules>
     <properties>
         <springboot.version>2.1.6.RELEASE</springboot.version>
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
@@ -50,12 +55,6 @@
 
     </properties>
 
-    <modules>
-        <module>eureka</module>
-        <module>server-project</module>
-        <module>security-core</module>
-        <module>txlcn-tm</module>
-    </modules>
     <!-- Spring Boot 版本管理 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
