@@ -8,6 +8,8 @@
         <option value="$PROJECT_DIR$/security-core/pom.xml" />
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
         <option value="$PROJECT_DIR$/server-project/pom.xml" />
+        <option value="$PROJECT_DIR$/entitle/pom.xml" />
+        <option value="$PROJECT_DIR$/server-project-user/pom.xml" />
       </list>
     </option>
   </component>

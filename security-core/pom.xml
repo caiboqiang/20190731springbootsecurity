@@ -16,24 +16,21 @@
 
 
     <dependencies>
+        <!--oauth2-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>
-
+        <!--security-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-
+        <!--session-->
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-core</artifactId>
         </dependency>
-
-
-
-
     </dependencies>
 
     <build>

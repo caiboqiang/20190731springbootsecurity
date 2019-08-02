@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cai</groupId>
-    <artifactId>entitle</artifactId>
+    <artifactId>entity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>entitle</name>
-    <description>Demo project for Spring Boot</description>
+    <name>entity</name>
+    <description>demo 案例提供参考</description>
 
     <parent>
         <groupId>com.cai.security</groupId>
@@ -20,6 +20,18 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <!-- 二维码 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.3.0</version>
         </dependency>
     </dependencies>
 
