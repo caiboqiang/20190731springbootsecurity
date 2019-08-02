@@ -11,6 +11,8 @@
     <modules>
         <module>eureka</module>
         <module>server-project-one</module>
+        <module>server-project-two</module>
+        <module>server-project-user</module>
         <module>security-core</module>
         <module>txlcn-tm</module>
         <module>entity</module>

@@ -10,11 +10,13 @@
         <module name="eureka" />
         <module name="security-core" />
         <module name="server-project-one" />
+        <module name="server-project-two" />
         <module name="server-project-user" />
         <module name="txlcn-tm" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="service-project-two" target="1.8" />
       <module name="txlcn-common" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -24,7 +26,9 @@
       <module name="eureka" options="-parameters" />
       <module name="security-core" options="-parameters" />
       <module name="server-project-one" options="-parameters" />
+      <module name="server-project-two" options="-parameters" />
       <module name="server-project-user" options="-parameters" />
+      <module name="service-project-two" options="-parameters" />
       <module name="txlcn-common" options="-parameters" />
       <module name="txlcn-tm" options="-parameters" />
     </option>

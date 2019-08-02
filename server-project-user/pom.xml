@@ -23,6 +23,7 @@
             <artifactId>entity</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <!-- SpringBoot - MyBatis -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
