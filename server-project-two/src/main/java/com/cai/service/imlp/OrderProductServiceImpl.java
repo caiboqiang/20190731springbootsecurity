@@ -3,8 +3,10 @@ package com.cai.service.imlp;
 import com.cai.entity.OrderProduct;
 import com.cai.mapper.OrderProductMapper;
 import com.cai.service.OrderProductService;
+import com.codingapi.txlcn.tc.annotation.LcnTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderProductServiceImpl implements OrderProductService {
@@ -13,6 +15,8 @@ public class OrderProductServiceImpl implements OrderProductService {
     OrderProductMapper orderProductMapper;
 
     @Override
+    @Transactional
+    @LcnTransaction
     public int addOrderProduct(OrderProduct orderProduct) {
         return orderProductMapper.addOrderProduct(orderProduct);
     }

@@ -24,10 +24,9 @@ public class OrdersController {
         return MessageBox.build("200", "ok", ordersService.getAll());
     }
 
-    @GetMapping(value = "/getFeginAll")
-    public String getFeginAll() {
-        MessageBox messageBox = MessageBox.build("200", "ok", ordersService.getAll());
-        log.info("messageBox:{}",messageBox.getData());
-        return MessageBox.build("200", "ok", ordersService.getAll()).getData().toString();
-    }
+
+
+
+
+
 }

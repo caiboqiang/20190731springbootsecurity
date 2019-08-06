@@ -6,6 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient //TODO 客户端
+//@EnableDistributedTransaction
 public class ServerProjectApplication {
 
     public static void main(String[] args) {
