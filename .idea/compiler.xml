@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="entity" />
         <module name="eureka" />
+        <module name="feign" />
         <module name="security-core" />
         <module name="server-project-one" />
         <module name="server-project-two" />
@@ -16,6 +17,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="feign (1)" target="1.8" />
+      <module name="feign (1) (com.cai.security)" target="1.5" />
+      <module name="feign-client" target="1.8" />
       <module name="service-project-two" target="1.8" />
       <module name="txlcn-common" target="1.8" />
     </bytecodeTargetLevel>
@@ -24,6 +28,9 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="entity" options="-parameters" />
       <module name="eureka" options="-parameters" />
+      <module name="feign" options="-parameters" />
+      <module name="feign (1)" options="-parameters" />
+      <module name="feign-client" options="-parameters" />
       <module name="security-core" options="-parameters" />
       <module name="server-project-one" options="-parameters" />
       <module name="server-project-two" options="-parameters" />

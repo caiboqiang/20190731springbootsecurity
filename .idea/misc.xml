@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/entitle/pom.xml" />
         <option value="$PROJECT_DIR$/service-project-two/pom.xml" />
         <option value="$PROJECT_DIR$/server-project-two/pom.xml" />
+        <option value="$PROJECT_DIR$/feign/pom.xml" />
       </list>
     </option>
   </component>

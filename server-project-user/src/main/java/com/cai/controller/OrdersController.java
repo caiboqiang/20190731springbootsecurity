@@ -2,11 +2,13 @@ package com.cai.controller;
 
 import com.cai.service.OrdersService;
 import com.cai.utilEntity.MessageBox;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Slf4j
 public class OrdersController {
     @Autowired
     OrdersService ordersService;
@@ -20,5 +22,12 @@ public class OrdersController {
     public MessageBox getAll() {
 
         return MessageBox.build("200", "ok", ordersService.getAll());
+    }
+
+    @GetMapping(value = "/getFeginAll")
+    public String getFeginAll() {
+        MessageBox messageBox = MessageBox.build("200", "ok", ordersService.getAll());
+        log.info("messageBox:{}",messageBox.getData());
+        return MessageBox.build("200", "ok", ordersService.getAll()).getData().toString();
     }
 }
