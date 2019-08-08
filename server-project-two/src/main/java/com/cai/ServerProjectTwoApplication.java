@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.cai.*"})
-@EnableDistributedTransaction
+@EnableDistributedTransaction //开启分布式事物
 public class ServerProjectTwoApplication {
 
     public static void main(String[] args) {

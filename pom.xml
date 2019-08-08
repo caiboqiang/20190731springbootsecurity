@@ -17,6 +17,7 @@
         <module>txlcn-tm</module>
         <module>entity</module>
         <module>feign</module>
+        <module>zuul</module>
     </modules>
     <!-- Spring Boot 版本管理 -->
     <properties>
