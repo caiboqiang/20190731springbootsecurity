@@ -29,10 +29,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-public class TMApplication {
+public class TMApplication5004 {
 
     public static void main(String[] args) {
-        SpringApplication springApplication = new SpringApplication(TMApplication.class);
+        SpringApplication springApplication = new SpringApplication(TMApplication5004.class);
         springApplication.setBanner(new TxLcnManagerBanner());
         springApplication.run(args);
     }

@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ServerProjectUserApplicationTests {
+public class HystrixDashboard5002ApplicationTests {
 
     @Test
     public void contextLoads() {

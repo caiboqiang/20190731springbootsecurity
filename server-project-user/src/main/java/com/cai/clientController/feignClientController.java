@@ -19,4 +19,14 @@ public class feignClientController {
         return "ok";
     }
 
+    @GetMapping(value = "/getFeignAll")
+    //@HystrixCommand
+    public String getFeignAll(){
+        /*if(true){
+            throw  new RuntimeException("-------");
+        }*/
+        ordersService.getF();
+        return "ok";
+    }
+
 }

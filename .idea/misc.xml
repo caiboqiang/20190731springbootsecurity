@@ -13,6 +13,8 @@
         <option value="$PROJECT_DIR$/server-project-two/pom.xml" />
         <option value="$PROJECT_DIR$/feign/pom.xml" />
         <option value="$PROJECT_DIR$/zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/hystrix-dashboard/pom.xml" />
+        <option value="$PROJECT_DIR$/hystrix-dashboard-5002/pom.xml" />
       </list>
     </option>
   </component>

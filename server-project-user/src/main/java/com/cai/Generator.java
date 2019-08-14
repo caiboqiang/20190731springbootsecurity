@@ -1,23 +1,20 @@
 package com.cai;
 
-import org.mybatis.generator.api.MyBatisGenerator;
-import org.mybatis.generator.config.Configuration;
-import org.mybatis.generator.config.xml.ConfigurationParser;
-import org.mybatis.generator.exception.InvalidConfigurationException;
-import org.mybatis.generator.exception.XMLParserException;
-import org.mybatis.generator.internal.DefaultShellCallback;
-import org.springframework.util.ResourceUtils;
-
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Generator {
-    public static void main(String[] args) throws FileNotFoundException {
-        List<String> warnings = new ArrayList<String>();
+    public static void main(String[] args) throws FileNotFoundException, ParseException {
+        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String d = format.format(date.getTime()+3600*1000);
+        Date dates =format.parse(d);
+        System.out.println("Format To String(Date):"+d);
+        System.out.println("Format To Date:"+format.format(dates));
+    }
+       /* List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         //如果这里出现空指针，直接写绝对路径即可。
         String genCfg = "D:\\CBQ\\cbqwork\\java\\20190731springbootsecurity\\server-project-user\\src\\main\\resources\\generatorConfig.xml";
@@ -38,8 +35,8 @@ public class Generator {
             myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
         } catch (InvalidConfigurationException e) {
             e.printStackTrace();
-            /*alter table course alter column status drop default 0;
-            alter table course alter column coursetype drop default 1;*/
+            *//*alter table course alter column status drop default 0;
+            alter table course alter column coursetype drop default 1;*//*
         }
         try {
             myBatisGenerator.generate(null);
@@ -50,7 +47,7 @@ public class Generator {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     /*public static void main(String[] args){
         List<String> warnings = new ArrayList<>();

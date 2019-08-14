@@ -31,7 +31,7 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     @LcnTransaction
     public String getF() {
-        orderProductFeignClient.getFeign();
-        throw new RuntimeException("异常");
+        return orderProductFeignClient.getFeign();
+        //throw new RuntimeException("异常");
     }
 }
