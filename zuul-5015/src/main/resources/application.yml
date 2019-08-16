@@ -1,0 +1,73 @@
+# ##################配置端口####################
+server:
+  port: 5015
+#####################配置注册中心###############
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5025/eureka
+####################配置服务名字#####################
+spring:
+  application:
+    name: Zuul
+
+  #################redis配置###################
+  #redis:
+  #  database: 9
+  #  host: 192.168.100.231
+  #  port: 6379
+  #  password: 123456
+  #  jedis:
+  #    pool:
+  #      max-active: -1
+  #      max-wait: -1
+   #     max-idle: 25
+   #     min-idle: 10
+  #  timeout: 5000
+################ Zuul动态服务配置服务路由 #########################
+zuul:
+  ribbon-isolation-strategy: thread #设置Hystrix隔离策略为线程池
+  thread-pool.use-separate-thread-pools: true  #每个路由使用独立的线程池
+  host:
+    connect-timeout-millis: 10000 #HTTP连接超时大于Hystrix的超时时间
+    socket-timeout-millis: 60000  #socket超时
+  routes:
+    myTwo:
+      path: /myTwo/**
+      serviceId: serverProjectTwo
+    myUser:  #   aaaaa: 可以随便写
+      path: /myUser/**
+      # 服务名
+      serviceId: ServerProjectUser
+      # 设置Cookie可传递
+      #sensitiveHeaders:
+    ####简洁写法
+    #serviceeureka: /myservice/**
+  #禁止外部访问(排除某些路由) 接口 是set集合
+  #ignored-patterns:
+    #- /myservice/getAll
+    #- /serviceeureka/getAll
+    #- /**/getAll
+
+
+    #忽略全部服务敏感头都可传递Cookie
+  sensitive-headers:
+
+#  只需要在yml 中配置zuul 连接超时，socket超时以及断溶超时即可，
+#  但需要注意的是，当hystrix的值小的时候，hystrix生效，当ribbon.ReadTimeout小的时候，ribbon生效
+#  注意  boot2.0版本以上或者Finchley版本以上 ,超时策略就成了ConnectTimeout+ReadTimeout*2>	ribbon.ReadTimeout
+
+#  注意：zuul ：host  只有zuul路由是url是才生效，如果使用的是serviceId，请使用（ribbon.ReadTimeout    ribbon.SocketTimeout   这两个）
+hystrix:
+  command:
+    default:
+      execution:
+        timeout: #配置命令的执行，是否会超时
+          enabled: true
+        isolation: #命令的执行超时时间  超时将执行回退
+          thread:
+            timeoutInMilliseconds: 30000
+
+ribbon:   #设置ribbon的超时时间小于zuul的超时时间
+  ReadTimeout: 5000  #读取超时时间
+  ConnectTimeout: 5000  #好像这个没什么用  如果说有人知道这个是什么作用可以评论告诉我一下

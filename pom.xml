@@ -9,20 +9,20 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>eureka</module>
-        <module>server-project-one</module>
-        <module>server-project-two</module>
-        <module>server-project-user</module>
-        <module>security-core</module>
-        <module>txlcn-tm</module>
-        <module>entity</module>
-        <module>feign</module>
-        <module>zuul</module>
-        <module>hystrix-dashboard-5002</module>
+        <module>eureka-5025</module>
+        <module>entity-api</module>
+        <module>server-project-one-6015</module>
+        <module>server-project-two-6025</module>
+        <module>server-project-user-6035</module>
+        <module>txlcn-tm-5045</module>
+        <module>feign-5035</module>
+        <module>zuul-5015</module>
+        <module>hystrix-dashboard-5055</module>
+        <module>zipkin-9411</module>
     </modules>
     <!-- Spring Boot 版本管理 -->
     <properties>
-        <springboot.version>2.1.6.RELEASE</springboot.version>
+        <springboot.version>2.1.5.RELEASE</springboot.version>
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
         <java.version>1.8</java.version>
         <fu.version>1.0-SNAPSHOT</fu.version>
@@ -154,14 +154,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--spring io-->
-            <!--<dependency>
-                <groupId>io.spring.platform</groupId>
-                <artifactId>platform-bom</artifactId>
-                <version>Brussels-SR4</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>-->
+
            <!-- Spring Cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -170,8 +163,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-
+            <!--spring io-->
+           <!-- <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>Brussels-SR17</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>-->
             <!-- ####################分布式事物 开始#######################  -->
             <dependency>
                 <groupId>com.codingapi.txlcn</groupId>
@@ -322,6 +321,14 @@
                 </executions>
                 <configuration>
                     <executable>true</executable>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
