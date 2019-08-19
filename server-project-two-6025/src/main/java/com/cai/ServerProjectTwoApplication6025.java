@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,9 +17,9 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.cai.*"})
 @EnableDistributedTransaction //开启分布式事物
-@EnableCircuitBreaker
+@EnableCircuitBreaker //服务降级
 @ComponentScan("com.cai")
-//@EnableHystrixDashboard
+@EnableHystrixDashboard
 public class ServerProjectTwoApplication6025 {
 
     public static void main(String[] args) {

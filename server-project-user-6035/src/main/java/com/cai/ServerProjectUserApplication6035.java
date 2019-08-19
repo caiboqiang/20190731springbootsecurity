@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,9 +19,10 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDistributedTransaction
 @EnableCircuitBreaker //TODO 服务降级
 @ComponentScan("com.cai")
-public class ServerProjectUserApplication5035 {
+@EnableHystrixDashboard
+public class ServerProjectUserApplication6035 {
     public static void main(String[] args) {
-        SpringApplication.run(ServerProjectUserApplication5035.class, args);
+        SpringApplication.run(ServerProjectUserApplication6035.class, args);
     }
 
     @Bean

@@ -17,6 +17,19 @@
     </parent>
 
     <dependencies>
+
+        <!--引入其他项目-->
+        <dependency>
+            <groupId>com.cai</groupId>
+            <artifactId>entity-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cai</groupId>
+            <artifactId>feign</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!-- LCN -->
         <dependency>
             <groupId>com.codingapi.txlcn</groupId>
@@ -33,17 +46,7 @@
             <artifactId>txlcn-tm</artifactId>
             <version>5.0.2.RELEASE</version>
         </dependency>
-        <!--引入其他项目-->
-        <dependency>
-            <groupId>com.cai</groupId>
-            <artifactId>entity</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.cai</groupId>
-            <artifactId>feign</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
 
         <!-- SpringBoot - MyBatis -->
         <dependency>
@@ -93,8 +96,23 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- MyBatis 逆向工程 插件 -->

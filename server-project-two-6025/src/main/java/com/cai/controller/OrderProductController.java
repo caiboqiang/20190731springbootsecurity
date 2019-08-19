@@ -4,6 +4,7 @@ import com.cai.entity.OrderProduct;
 import com.cai.feignClient.OrdersFeignClient;
 import com.cai.service.OrderProductService;
 import com.cai.utilEntity.MessageBox;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.Date;
  * f服务降级可以用在客户端或服务提供者
  */
 @RestController
+@DefaultProperties //服务接口监控
 public class OrderProductController {
     @Autowired
     OrderProductService orderProductService;
