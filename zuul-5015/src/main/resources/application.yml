@@ -32,6 +32,9 @@ zuul:
     connect-timeout-millis: 10000 #HTTP连接超时大于Hystrix的超时时间
     socket-timeout-millis: 60000  #socket超时
   routes:
+    myOne:
+      path: /myOne/**
+      serviceId: ServerProjectOne
     myTwo:
       path: /myTwo/**
       serviceId: serverProjectTwo

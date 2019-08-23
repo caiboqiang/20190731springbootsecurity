@@ -18,5 +18,4 @@ public class ServerProjectApplication6015 {
     public static void main(String[] args) {
         SpringApplication.run(ServerProjectApplication6015.class, args);
     }
-
 }
