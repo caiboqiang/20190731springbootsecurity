@@ -49,6 +49,11 @@
             <artifactId>javase</artifactId>
             <version>3.3.0</version>
         </dependency>
+        <!-- AOP -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!--mysql依赖-->
         <dependency>
             <groupId>mysql</groupId>

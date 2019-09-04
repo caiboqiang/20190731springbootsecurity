@@ -1,6 +1,7 @@
 package com.cai.controller;
 
 import com.cai.utilEntity.MessageBox;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -8,10 +9,12 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping(value = "/REST")
+@DefaultProperties
 public class RESTfulController {
 
     @GetMapping("/get")
     public MessageBox get(){
+        //throw new SysErr();
         return MessageBox.build("","Get API");
     }
 
