@@ -84,7 +84,6 @@ public class SysAspect {
         Object[] objects = proceedingJoinPoint.getArgs();
         for (Object args :objects){
             log.info("=========={}===========",args);
-
         }
 
         Object Object = proceedingJoinPoint.proceed();//实际上是去调用被拦截的方法返回的内容
