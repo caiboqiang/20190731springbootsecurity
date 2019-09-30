@@ -43,6 +43,7 @@ public class FileController {
                 map = utli.executeUpload(uploadDir, files[i]);
                 list.add(map);
             }
+
         }
         if (files.length == 1) {
             log.info("===========图片上传成功==========");

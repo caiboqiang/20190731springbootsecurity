@@ -13,7 +13,6 @@
         <module name="server-project-one-6015" />
         <module name="server-project-two-6025" />
         <module name="server-project-user-6035" />
-        <module name="service-security" />
         <module name="service-security-app" />
         <module name="service-security-borowser" />
         <module name="service-security-core" />
@@ -24,6 +23,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="entity-api-s" target="1.8" />
+      <module name="service-security" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

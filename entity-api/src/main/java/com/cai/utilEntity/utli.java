@@ -32,6 +32,8 @@ public class utli {
         String str = new BASE64Encoder().encode(b).replaceAll("\r\n", "");
         return str;
 
+
+
     }
 
     /**

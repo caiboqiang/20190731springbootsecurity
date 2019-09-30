@@ -16,7 +16,6 @@
         <option value="$PROJECT_DIR$/hystrix-dashboard-5002/pom.xml" />
         <option value="$PROJECT_DIR$/zipkin-9411/pom.xml" />
         <option value="$PROJECT_DIR$/entity-api/pom.xml" />
-        <option value="$PROJECT_DIR$/service-security/pom.xml" />
         <option value="$PROJECT_DIR$/service-security-core/pom.xml" />
         <option value="$PROJECT_DIR$/service-security-app/pom.xml" />
         <option value="$PROJECT_DIR$/service-security-borowser/pom.xml" />

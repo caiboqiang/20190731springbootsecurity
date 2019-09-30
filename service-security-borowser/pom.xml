@@ -18,7 +18,7 @@
     <dependencies>
         <dependency>
             <groupId>com.cai</groupId>
-            <artifactId>service-security</artifactId>
+            <artifactId>service-security-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!-- session 集群管理-->

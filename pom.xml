@@ -19,7 +19,6 @@
         <module>zuul-5015</module>
         <module>hystrix-dashboard-5055</module>
         <module>zipkin-9411</module>
-        <module>service-security</module>
         <module>service-security-core</module>
         <module>service-security-borowser</module>
         <module>service-security-app</module>

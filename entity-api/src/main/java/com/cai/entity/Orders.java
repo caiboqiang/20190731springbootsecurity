@@ -1,10 +1,12 @@
 package com.cai.entity;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 
 public class Orders {
     private Integer id;
-
+    @ApiModelProperty(value = "创建时间")
     private Date creationtime;
 
     private Integer tenantid;
