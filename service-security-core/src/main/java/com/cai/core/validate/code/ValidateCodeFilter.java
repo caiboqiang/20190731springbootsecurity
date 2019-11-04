@@ -1,8 +1,9 @@
 package com.cai.core.validate.code;
 
 import com.cai.redis.RedisService;
+import com.cai.utilEntity.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -27,8 +28,8 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
     //@Autowired
     private AuthenticationFailureHandler authenticationFailureHandler;
 
-    @Autowired
-    RedisService redisService;
+    /*@Autowired
+    RedisService redisService;*/
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -41,14 +42,17 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
             String code = request.getParameter("code");
 
             try {
-
-                /*Object object = redisService.set("k",11);
+                ApplicationContext applicationContext = SpringContextUtil.getApplicationContext();
+                RedisService redisService = (RedisService)applicationContext.getBean("redisService");
+                Object object = redisService.set("k",11);
+                Object objectV = redisService.get("k");
+                log.info("==========Redis:{}==========",objectV.toString());
                 if(object == null){
                     throw new ValidateCodeException("验证码不存在");
                 }
                 if(object.toString().equals("ValidateCode"+code)){
                     throw new ValidateCodeException("验证码不一致");
-                }*/
+                }
                 log.info("=======code:{}=======",code);
 
             } catch (ValidateCodeException e) {
