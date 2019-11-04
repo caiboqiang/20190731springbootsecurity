@@ -21,8 +21,8 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
         //根据用户名查询用户信息MyUserDetailsServiceImpl
         log.info("=======用户名：{}==========",username);
         //根据用户账号查询用户信息是否被冻结
-       boolean t = true;
-       //用户没有过期
+        boolean t = true;
+        //用户没有过期
         boolean tf = true;
         System.out.println(username);
         return new User(username,"123456",true,true,true,true, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));

@@ -4,6 +4,9 @@ import com.cai.utilEntity.MessageBox;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +40,33 @@ public class HttpController {
             }
         };
         log.info("主线程关闭：{}",new Date().getTime());
+        return callable;
+    }
+    @GetMapping(value = "/getUser")
+    @ApiOperation(value = "获取用户信息")
+    public Callable<MessageBox> getUser(Authentication authentication){
+        Callable<MessageBox> callable = new Callable<MessageBox>() {
+
+            @Override
+            public MessageBox call() throws Exception {
+                //SecurityContextHolder.getContext().getAuthentication()
+                return MessageBox.build("100","ok Json",authentication);
+            }
+        };
+        return callable;
+    }
+
+    @GetMapping(value = "/getUser1")
+    @ApiOperation(value = "获取用户信息")
+    public Callable<MessageBox> getUser1(@AuthenticationPrincipal UserDetails userDetails){
+        Callable<MessageBox> callable = new Callable<MessageBox>() {
+
+            @Override
+            public MessageBox call() throws Exception {
+                //SecurityContextHolder.getContext().getAuthentication()
+                return MessageBox.build("100","ok Json",userDetails);
+            }
+        };
         return callable;
     }
 }

@@ -46,12 +46,6 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.cai</groupId>
-            <artifactId>service-security</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
         <!-- eureka-client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

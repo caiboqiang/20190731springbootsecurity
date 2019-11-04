@@ -13,6 +13,8 @@ public class Generator {
         Date dates =format.parse(d);
         System.out.println("Format To String(Date):"+d);
         System.out.println("Format To Date:"+format.format(dates));
+
+        System.out.println(2*12);
     }
        /* List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;

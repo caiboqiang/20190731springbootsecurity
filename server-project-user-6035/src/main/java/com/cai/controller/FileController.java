@@ -1,17 +1,25 @@
 package com.cai.controller;
 
+import com.cai.redis.RedisService;
 import com.cai.utilEntity.ConsJson;
+import com.cai.utilEntity.MessageBox;
 import com.cai.utilEntity.ResultValue;
 import com.cai.utilEntity.utli;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 /**
  * 文件上传
@@ -19,7 +27,11 @@ import java.util.Map;
 @Slf4j
 @RestController
 public class FileController {
+
+    @Autowired
+    private RedisService redisService;
     @PostMapping(value = "UpLode")
+    @ApiOperation(value = "文件上传接口")
     public String UpLode(MultipartFile[] files) throws Exception {
         //log.info("文件名：{}",file.getName());
         //log.info("原始文件名：{}",file.getOriginalFilename());
@@ -52,5 +64,20 @@ public class FileController {
             log.info("===========图片上传成功==========");
             return ConsJson.Object2StringJson(new ResultValue("SERVICE-USER", 0, "图片上传成功", list));
         }
+    }
+    @GetMapping(value = "/getRedis/{code}")
+    public Callable<MessageBox> getRedis(@PathVariable("code") String code){
+        Callable<MessageBox> callable = new Callable<MessageBox>() {
+            @Override
+            public MessageBox call() throws Exception {
+                Object o = redisService.get(code);
+                log.info("副线程开启：{}",new Date().getTime());
+                Thread.sleep(2000);
+                log.info("副线程关闭：{}",new Date().getTime());
+                return MessageBox.build("100","ok Json","副线程处理完成");
+            }
+        };
+        log.info("主线程关闭：{}",new Date().getTime());
+        return callable;
     }
 }
