@@ -6,19 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="server-project-one-6015" />
+        <module name="service-security-app" />
         <module name="entity-api" />
         <module name="eureka-5025" />
-        <module name="feign-5035" />
-        <module name="hystrix-dashboard-5055" />
-        <module name="server-project-one-6015" />
-        <module name="server-project-two-6025" />
-        <module name="server-project-user-6035" />
-        <module name="service-security-app" />
-        <module name="service-security-borowser" />
-        <module name="service-security-core" />
         <module name="txlcn-tm-5045" />
-        <module name="zipkin-9411" />
         <module name="zuul-5015" />
+        <module name="service-security-borowser" />
+        <module name="hystrix-dashboard-5055" />
+        <module name="server-project-user-6035" />
+        <module name="service-security-core" />
+        <module name="server-project-two-6025" />
+        <module name="feign-5035" />
+        <module name="zipkin-9411" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">

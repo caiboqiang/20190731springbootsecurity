@@ -45,12 +45,12 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
                 ApplicationContext applicationContext = SpringContextUtil.getApplicationContext();
                 RedisService redisService = (RedisService)applicationContext.getBean("redisService");
                 Object object = redisService.set("k",11);
-                Object objectV = redisService.get("k");
-                log.info("==========Redis:{}==========",objectV.toString());
-                if(object == null){
+                Object objectV = redisService.get("Login13971320964");
+                //log.info("==========Redis:{}==========",objectV.toString());
+                if(objectV == null){
                     throw new ValidateCodeException("验证码不存在");
                 }
-                if(object.toString().equals("ValidateCode"+code)){
+                if(!objectV.toString().equals(code)){
                     throw new ValidateCodeException("验证码不一致");
                 }
                 log.info("=======code:{}=======",code);

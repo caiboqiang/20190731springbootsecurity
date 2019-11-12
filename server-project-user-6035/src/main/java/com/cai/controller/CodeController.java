@@ -3,6 +3,7 @@ package com.cai.controller;
 import com.cai.redis.RedisService;
 import com.cai.security.service.CodeService;
 import com.cai.utilEntity.MessageBox;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import java.util.concurrent.Callable;
 @RestController
 @Slf4j
 @EnableSwagger2
+@Api(value = "后台验证码业务",tags = "验证码操作接口")
 public class CodeController {
 
     @Autowired
@@ -43,9 +45,10 @@ public class CodeController {
         Callable<MessageBox> callable = new Callable<MessageBox>(){
             @Override
             public MessageBox call() throws Exception {
-                Object object = redisService.get("Login"+phone);
+                int code = (int)((Math.random()*9+1)*100000);
+                Object object = redisService.set("Login"+phone,code,120L);
                 log.info("=====object:{}======",object.toString());
-                return MessageBox.build("200","获取短信验证码",object.toString());
+                return MessageBox.build("200","获取短信验证码",code);
             }
         };
         return callable;

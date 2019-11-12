@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
     
     <groupId>com.cai</groupId>
-    <artifactId>hystrix-dashboard-5002</artifactId>
+    <artifactId>hystrix-dashboard-5055</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hystrix-dashboard-5002</name>
+    <name>hystrix-dashboard-5055</name>
 
     <parent>
         <groupId>com.cai.security</groupId>

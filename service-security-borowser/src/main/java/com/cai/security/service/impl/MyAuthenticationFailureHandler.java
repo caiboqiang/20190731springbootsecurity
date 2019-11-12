@@ -33,6 +33,5 @@ public class MyAuthenticationFailureHandler implements AuthenticationFailureHand
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             response.setContentType("application/json;charset=UTF-8");
             response.getWriter().write(objectMapper.writeValueAsString(MessageBox.build("404","登入错误",exception.getMessage())));
-
     }
 }

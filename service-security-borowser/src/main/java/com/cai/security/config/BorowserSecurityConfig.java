@@ -73,7 +73,8 @@ public class BorowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 //授权配置
                 .authorizeRequests()
                 //当访问下面链接不需要认证 可以访问
-                .antMatchers("/authentication/require","/authentication/logErr","/createSmsCode/*",
+                .antMatchers("/authentication/require","/authentication/logErr","/createSmsCode/*"
+                        ,"/getSmsCode/*",
                         securityProperties.getBrowser().getLogin()).permitAll()
 
                 //任何请求
