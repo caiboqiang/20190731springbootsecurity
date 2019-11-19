@@ -31,7 +31,9 @@ public class AlipayController {
     // 支付宝公钥,
     private String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjpCTKqu2SNMz95Qjv6qedtDaY6lrEPuePHMKGbXL0/3JcQrepx5f9PQP7thXnuTaMTZpmNmDNardZyzMnULCtG6hzfQtAks+CpehEtntzQpUyNGH7881yREiH93xyfaJ2YattgFfY3GK7QlMZIsGw9RW7wONQUP36p56Q2W8IzxnyajKZa7BxJHDluJK4oQYA4lvSWMmOzQAbOD4s1MW+lFxzlxgYr6Bg/sq9zn0BahTEWCi//vF/fxasVxU3bthGczcpVhEZxVNDrDqj0iwRhuJ3gk96l5UMCFFQ7CkkN3qwS1WJASFIkzhYPg4rFojxb9n9RVjUaMiRrUoVnkyLQIDAQAB";
     private String sign_type = "RSA2";
+    //同步回调
     private String return_url = "";
+    //异步回调
     private String notify_url = "";
     @GetMapping("/pay")
     private String alipayPay() throws AlipayApiException {
@@ -64,7 +66,9 @@ public class AlipayController {
                 merchant_private_key, "json", charset, alipay_public_key, sign_type);
         // 设置请求参数
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
+        //同步回调
         alipayRequest.setReturnUrl(return_url);
+        //异步回调
         alipayRequest.setNotifyUrl(notify_url);
         alipayRequest.setBizContent(json);
         String result = null;
@@ -79,7 +83,7 @@ public class AlipayController {
 
 
     /**
-     * @Description: 支付宝回调接口
+     * @Description: 支付宝回调接口-异步回调
      * @param out_trade_no 商户订单号
      * @param trade_no     支付宝交易凭证号
      * @param trade_status 交易状态
@@ -119,7 +123,7 @@ public class AlipayController {
 
 
     /**
-     * @Description: 支付宝回调接口
+     * @Description: 支付宝回调接口-同步回调
      * @param out_trade_no 商户订单号
      * @param trade_no     支付宝交易凭证号
      * @return String
