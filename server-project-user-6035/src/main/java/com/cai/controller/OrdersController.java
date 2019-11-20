@@ -7,8 +7,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -41,6 +40,11 @@ public class OrdersController {
     public MessageBox getAll() {
 
         return MessageBox.build("200", "ok", ordersService.getAll());
+    }
+    @RequestMapping(value = "/cs",method = RequestMethod.GET)
+    public MessageBox cs(@RequestParam(required = true) String name){
+        log.info("========name:{}=======",name);
+        return MessageBox.build("200", "ok", name);
     }
 
     public MessageBox Fallback(){

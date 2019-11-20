@@ -24,7 +24,6 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
         boolean t = true;
         //用户没有过期
         boolean tf = true;
-        System.out.println(username);
         return new User(username,"123456",true,true,true,true, AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
     }
 }

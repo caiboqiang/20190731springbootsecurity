@@ -57,7 +57,7 @@ public class AlipayController {
         vo.setTotal_amount("0.01");
         vo.setSubject("测试商品");
         vo.setTime_expire(dateString);
-        //这个是固定的这个参数
+        //这个是固定的这个参数  设置销售产品码
         vo.setProduct_code("FAST_INSTANT_TRADE_PAY");
         vo.setIt_b_pay("2m");
         String json = JSON.toJSONString(vo);

@@ -22,14 +22,14 @@ public class SysFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         long t = new Date().getTime();
-        System.out.println("=========资源请求开始时间："+t +"=========");
-        System.out.println("=========资源请求资源路径LocalAddr："+request.getLocalAddr() +"=========");
-        System.out.println("=========资源请求资源路径LocalName："+request.getLocalName() +"=========");
-        String url = ((HttpServletRequest) request).getPathTranslated();
-        System.out.println("=========资源请求资源路径URI："+((HttpServletRequest) request).getRequestURI() +"=========");
+        //System.out.println("=========资源请求开始时间："+t +"=========");
+        //System.out.println("=========资源请求资源路径LocalAddr："+request.getLocalAddr() +"=========");
+        //System.out.println("=========资源请求资源路径LocalName："+request.getLocalName() +"=========");
+        //String url = ((HttpServletRequest) request).getPathTranslated();
+        //System.out.println("=========资源请求资源路径URI："+((HttpServletRequest) request).getRequestURI() +"=========");
         chain.doFilter(request,response);
         long l = new Date().getTime()-t;
-        System.out.println("=========资源请求结束时间："+ l +"=========");
+        //System.out.println("=========资源请求结束时间："+ l +"=========");
     }
     //销毁
     @Override
