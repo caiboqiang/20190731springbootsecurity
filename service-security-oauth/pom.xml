@@ -4,31 +4,29 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cai</groupId>
-    <artifactId>service-security-app</artifactId>
+    <artifactId>service-security-oauth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>service-security-app</name>
-    <description>app应用处理模块</description>
+    <name>service-security-oauth</name>
 
+    <description>serviceSecurityOauth</description>
+    <!-- 父项目 -->
     <parent>
         <groupId>com.cai.security</groupId>
         <artifactId>20190731springbootsecurity</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.cai</groupId>-->
-<!--            <artifactId>service-security-core</artifactId>-->
-<!--            <version>0.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-security</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.security.oauth.boot</groupId>
-            <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
         </dependency>
     </dependencies>
 

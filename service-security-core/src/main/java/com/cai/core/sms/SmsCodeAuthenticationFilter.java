@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 过滤器
+ * 过滤器 短信拦截请求
  */
 public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
     public static final String SPRING_SECURITY_FORM_PHONE_KEY = "phone";
