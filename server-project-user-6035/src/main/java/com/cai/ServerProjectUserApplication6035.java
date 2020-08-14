@@ -23,6 +23,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class ServerProjectUserApplication6035 {
     public static void main(String[] args) {
         SpringApplication.run(ServerProjectUserApplication6035.class, args);
+        System.err.println ( ServerProjectUserApplication6035.class.getClassLoader ().toString () );
     }
 
     @Bean

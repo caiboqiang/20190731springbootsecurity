@@ -24,6 +24,7 @@ public class ServerProjectTwoApplication6025 {
 
     public static void main(String[] args) {
         SpringApplication.run(ServerProjectTwoApplication6025.class, args);
+        System.err.println ( ServerProjectTwoApplication6025.class.getClassLoader ().toString () );
     }
 
     @Bean

@@ -29,11 +29,11 @@
             <artifactId>feign</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>com.cai</groupId>
-            <artifactId>service-security-borowser</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.cai</groupId>-->
+<!--            <artifactId>service-security-borowser</artifactId>-->
+<!--            <version>0.0.1-SNAPSHOT</version>-->
+<!--        </dependency>-->
 
         <!-- LCN -->
         <dependency>

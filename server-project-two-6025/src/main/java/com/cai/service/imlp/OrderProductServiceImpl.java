@@ -16,7 +16,7 @@ public class OrderProductServiceImpl implements OrderProductService {
 
     @Override
     @Transactional
-    @LcnTransaction
+    @LcnTransaction //分布式事务注解
     public int addOrderProduct(OrderProduct orderProduct) {
         return orderProductMapper.addOrderProduct(orderProduct);
     }

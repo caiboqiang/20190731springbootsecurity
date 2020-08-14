@@ -36,19 +36,19 @@ public class OrderProductController {
         }
 
         OrderProduct orderProduct = new OrderProduct();
-        orderProduct.setCapacity(1);
-        orderProduct.setCount(1);
+        orderProduct.setCapacity(100);
+        orderProduct.setCount(1000);
         orderProduct.setCreationtime(new Date());
         orderProduct.setPrice(1);
         orderProduct.setLineno(1);
-        orderProduct.setProductcode("1");
+        orderProduct.setProductcode("100");
         orderProduct.getCreationtime(new Date());
-        orderProduct.setProductname("1");
+        orderProduct.setProductname("1000");
         orderProduct.setProducttype(1);
         orderProduct.setStatus(1);
         orderProduct.setUnit("1");
         orderProduct.setTenantid(1);
-        //orderProductService.addOrderProduct(orderProduct);
+        int i = orderProductService.addOrderProduct(orderProduct);
         return MessageBox.build("200","ok");
     }
 
@@ -56,7 +56,7 @@ public class OrderProductController {
     @HystrixCommand
     public String getFeign(){
         //System.out.println("====="+ordersFeignClient.getFeginAll());
-       /* OrderProduct orderProduct = new OrderProduct();
+        OrderProduct orderProduct = new OrderProduct();
         orderProduct.setCapacity(1);
         orderProduct.setCount(1);
         orderProduct.setCreationtime(new Date());
@@ -69,7 +69,9 @@ public class OrderProductController {
         orderProduct.setStatus(1);
         orderProduct.setUnit("1");
         orderProduct.setTenantid(1);
-        orderProductService.addOrderProduct(orderProduct);*/
+        int y = orderProductService.addOrderProduct(orderProduct);
+        System.err.println ( y );
+        System.err.println (OrderProductController.class.getClassLoader ().toString ());
         return "ok";
     }
 
