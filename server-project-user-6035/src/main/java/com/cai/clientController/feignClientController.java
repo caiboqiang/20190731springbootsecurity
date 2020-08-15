@@ -6,7 +6,9 @@ import com.cai.utilEntity.MessageBox;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,12 +21,13 @@ public class feignClientController {
     @Autowired
     OrdersService ordersService;
 
-    @GetMapping(value = "/getF")
-    public String getF(){
+    @RequestMapping(value = "/getF")
+    public String getF(@AuthenticationPrincipal String name){
+        log.info ( "============"+name);
         System.err.println (feignClientController.class.getClassLoader ().toString ());
 
-        return  ordersService.getF();
-       // return "ok";
+        //return  ordersService.getF();
+        return "ok";
     }
 
     @GetMapping(value = "/getFeignAll")

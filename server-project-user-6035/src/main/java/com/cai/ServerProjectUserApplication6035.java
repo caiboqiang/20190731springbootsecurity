@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.cai.*"})
-@EnableDistributedTransaction
+//@EnableDistributedTransaction
 @EnableCircuitBreaker //TODO 服务降级
 @ComponentScan("com.cai")
 @EnableHystrixDashboard
