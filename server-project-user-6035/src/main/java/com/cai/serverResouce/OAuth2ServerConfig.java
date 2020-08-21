@@ -13,18 +13,20 @@ import org.springframework.stereotype.Component;
 public class OAuth2ServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resourceServerSecurityConfigurer) throws Exception {
-        resourceServerSecurityConfigurer.resourceId ( "server-user" ); //配置id
+        resourceServerSecurityConfigurer.resourceId("server-user"); //配置id 资源服务器id
     }
 
-//    /**
-//     * 权限检查
-//     * @param httpSecurity
-//     * @throws Exception
-//     */
-//    @Override
-//    public void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.authorizeRequests ().antMatchers ( "/ok" ).permitAll ()
-//        .anyRequest ().authenticated ();//配置不需要拦截的请求
-//
-//    }
+    /**
+     * 权限检查
+     * @param httpSecurity
+     * @throws Exception
+     */
+    @Override
+    public void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests ().
+                antMatchers ( "/ok" ).
+                permitAll ().
+                anyRequest ().authenticated ();//配置不需要拦截的请求
+
+    }
 }

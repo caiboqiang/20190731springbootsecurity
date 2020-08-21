@@ -22,13 +22,19 @@ public class OAuth2WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Bean
     public ResourceServerTokenServices tokenServices(){
+        //这是一个调用远程服务的
         RemoteTokenServices remoteTokenServices = new RemoteTokenServices ( );
         remoteTokenServices.setClientId ("adminApp");
-        remoteTokenServices.setClientSecret ("123456");
+        remoteTokenServices.setClientSecret ("12345");
         remoteTokenServices.setCheckTokenEndpointUrl ("http://localhost:5056/oauth/chech_token");//校验的地址
         return remoteTokenServices;
     }
 
+    /**
+     * 把它声明成一个bean
+     * @return
+     * @throws Exception
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

@@ -39,18 +39,18 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory ().
                 withClient ("adminApp"). //应用的用户名服务名
-                secret (passwordEncoder.encode("123456")). //应用的密码
+                secret (passwordEncoder.encode("12345")). //应用的密码
                 scopes ("read","write").//ACL权限控制
                 accessTokenValiditySeconds (3600). //Token令牌有效时间
-                resourceIds ( "server-user" ). //可以访问的资源服务器
-                authorizedGrantTypes ("password"). //授权的方式 有4中授权类型
+                resourceIds ("server-user"). //可以访问的资源服务器
+                authorizedGrantTypes ("password","authorization_code","implicit","refresh_token"). //授权的方式 有4中授权类型
                 and ().
                 withClient ("adminService"). //应用的服务名
                 secret (passwordEncoder.encode("123456")). //密码
                 scopes ("read","write").//权限控制
                 accessTokenValiditySeconds (3600). //Token令牌有效时间
-                resourceIds ( "server-user" ). //可以访问的资源服务器
-                authorizedGrantTypes ("password");
+                resourceIds ("server-user"). //可以访问的资源服务器
+                authorizedGrantTypes ("password","authorization_code","implicit","refresh_token");
     }
 
     /**

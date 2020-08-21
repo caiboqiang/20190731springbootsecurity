@@ -41,7 +41,7 @@ public class OrdersController {
 
         return MessageBox.build("200", "ok", ordersService.getAll());
     }
-    @RequestMapping(value = "/cs",method = RequestMethod.GET)
+    @RequestMapping(value = "/cs",method = RequestMethod.POST)
     public MessageBox cs(@RequestParam(required = true) String name){
         log.info("========name:{}=======",name);
         return MessageBox.build("200", "ok", name);

@@ -23,6 +23,7 @@
 <!--        <module>service-security-borowser</module>-->
 <!--        <module>service-security-app</module>-->
 <!--        <module>service-security-oauth</module>-->
+        <module>server-OAuth</module>
     </modules>
     <!-- Spring Boot 版本管理 -->
     <properties>
