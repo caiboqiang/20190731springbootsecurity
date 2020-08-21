@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserDetailsServiceImpl implements UserDetailsService {
+
     @Autowired
     PasswordEncoder passwordEncoder;
     @Override

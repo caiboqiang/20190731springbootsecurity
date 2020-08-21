@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Configuration
 @EnableAuthorizationServer //代表这个应用最为 Authorization 授权服务器
 public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter {
+
     @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
