@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class OAuth2ServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resourceServerSecurityConfigurer) throws Exception {
-        resourceServerSecurityConfigurer.resourceId ( "XXXXX-oooooo1" ); //配置id
+        resourceServerSecurityConfigurer.resourceId ( "server-user" ); //配置id
     }
 
 //    /**

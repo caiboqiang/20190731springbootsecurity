@@ -17,17 +17,17 @@ import org.springframework.stereotype.Component;
  */
 @Configuration
 @EnableAuthorizationServer //代表这个应用最为 Authorization 授权服务器
-public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter {
+public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter{
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
     @Autowired
-    PasswordEncoder passwordEncoder; //密码加密工具
+    private PasswordEncoder passwordEncoder; //密码加密工具
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("isAuthenticated()")
-                .checkTokenAccess("isAuthenticated()"); //验证token一定是经过身份认证的
+        security.tokenKeyAccess("isAuthenticated()");  //来验证请求一定是经过身份认证的
+                //.checkTokenAccess("isAuthenticated()"); //验证token一定是经过身份认证的
     }
 
     /**
@@ -38,18 +38,18 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory ().
-                withClient ("adminApp"). //应用的服务名
-                secret (passwordEncoder.encode("123456789")). //密码
-                scopes ("r","w").//权限控制
-                accessTokenValiditySeconds (1800).//Token令牌有效时间
-                resourceIds ( "XXXXX-oooooo1" ).//可以访问的资源服务器
-                authorizedGrantTypes ("password").//授权的方式
+                withClient ("adminApp"). //应用的用户名服务名
+                secret (passwordEncoder.encode("123456")). //应用的密码
+                scopes ("read","write").//ACL权限控制
+                accessTokenValiditySeconds (3600). //Token令牌有效时间
+                resourceIds ( "server-user" ). //可以访问的资源服务器
+                authorizedGrantTypes ("password"). //授权的方式 有4中授权类型
                 and ().
-                withClient ("admin"). //应用的服务名
+                withClient ("adminService"). //应用的服务名
                 secret (passwordEncoder.encode("123456")). //密码
-                scopes ("r","w").//权限控制
-                accessTokenValiditySeconds (1800).//Token令牌有效时间
-                resourceIds ( "XXXXX-oooooo" ).//可以访问的资源服务器
+                scopes ("read","write").//权限控制
+                accessTokenValiditySeconds (3600). //Token令牌有效时间
+                resourceIds ( "server-user" ). //可以访问的资源服务器
                 authorizedGrantTypes ("password");
     }
 

@@ -35,5 +35,6 @@ public class TMApplication5045 {
         SpringApplication springApplication = new SpringApplication(TMApplication5045.class);
         springApplication.setBanner(new TxLcnManagerBanner());
         springApplication.run(args);
+        System.err.println ( TMApplication5045.class.getClassLoader ().toString () );
     }
 }
