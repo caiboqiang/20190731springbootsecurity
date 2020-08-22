@@ -1,6 +1,7 @@
 package com.cai.clientController;
 
 import com.cai.entity.Orders;
+import com.cai.entity.UserVo;
 import com.cai.service.OrdersService;
 import com.cai.utilEntity.MessageBox;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -24,7 +25,7 @@ public class feignClientController {
     @RequestMapping(value = "/getF")
     public String getF(@AuthenticationPrincipal String name){
         log.info ( "============"+name);
-        System.err.println (feignClientController.class.getClassLoader ().toString ());
+        //System.err.println (feignClientController.class.getClassLoader ().toString ());
 
         //return  ordersService.getF();
         return "ok";
