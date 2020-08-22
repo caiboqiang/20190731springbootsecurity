@@ -24,7 +24,8 @@ public class OAuth2ServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests ().
-                antMatchers ( "/ok" ).
+                antMatchers ( "/oauth/chech_token" ).
+
                 permitAll ().
                 anyRequest ().authenticated ();//配置不需要拦截的请求
 

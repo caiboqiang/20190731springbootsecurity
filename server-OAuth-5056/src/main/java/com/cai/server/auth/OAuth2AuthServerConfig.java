@@ -24,12 +24,6 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
     @Autowired
     private PasswordEncoder passwordEncoder; //密码加密工具
 
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.tokenKeyAccess("isAuthenticated()");  //来验证请求一定是经过身份认证的
-                //.checkTokenAccess("isAuthenticated()"); //验证token一定是经过身份认证的
-    }
-
     /**
      * 客户端应用的配置
      * @param clients
@@ -61,5 +55,11 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager (authenticationManager);
+    }
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.tokenKeyAccess("isAuthenticated()");//.checkTokenAccess("permitAll()");  //来验证请求一定是经过身份认证的
+        //.checkTokenAccess("permitAll()"); //验证token一定是经过身份认证的
     }
 }
