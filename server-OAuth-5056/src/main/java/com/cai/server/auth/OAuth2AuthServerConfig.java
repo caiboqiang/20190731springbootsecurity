@@ -14,6 +14,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -22,6 +24,8 @@ import javax.sql.DataSource;
  * 配置类
  * 1.需要继承一个spring的父类 AuthorizationServerConfigurerAdapter:授权服务器配置的适配器
  */
+@EnableRedisHttpSession //表示把session存到缓存
+//@EnableJdbcHttpSession //表示把session存到数据库
 @Configuration
 @EnableAuthorizationServer //代表这个应用最为 Authorization 授权服务器
 public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter{
