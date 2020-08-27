@@ -10,20 +10,29 @@ eureka:
 spring:
   application:
     name: Zuul
+####################################################
+  datasource:
+    url: jdbc:mysql://123.57.108.75:3306/cbqtest?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
 
-  #################redis配置###################
-  #redis:
-  #  database: 9
-  #  host: 192.168.100.231
-  #  port: 6379
-  #  password: 123456
-  #  jedis:
-  #    pool:
-  #      max-active: -1
-  #      max-wait: -1
-   #     max-idle: 25
-   #     min-idle: 10
-  #  timeout: 5000
+  #################redis配置 做限流###################
+  redis:
+    database: 0
+    host: 123.57.108.75
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: -1
+        max-wait: -1
+        max-idle: 25
+        min-idle: 10
+    timeout: 5000
 ################ Zuul动态服务配置服务路由 #########################
 zuul:
   ribbon-isolation-strategy: thread #设置Hystrix隔离策略为线程池
@@ -31,7 +40,12 @@ zuul:
   host:
     connect-timeout-millis: 10000 #HTTP连接超时大于Hystrix的超时时间
     socket-timeout-millis: 60000  #socket超时
+
   routes:
+    token:
+      #url: http://localhost:5056
+      path: /token/**
+      serviceId: serverOAuth
     myOne:
       path: /myOne/**
       serviceId: ServerProjectOne
@@ -51,10 +65,30 @@ zuul:
     #- /myservice/getAll
     #- /serviceeureka/getAll
     #- /**/getAll
-
-
-    #忽略全部服务敏感头都可传递Cookie
+#忽略全部服务敏感头都可传递Cookie
   sensitive-headers:
+  ratelimit:
+    enabled: true
+    repository: JPA #REDIS
+    default-policy-list: #限流策略配置 对服务 不配默认所有
+      - limit: 1 #可以过的请求数
+        quota: 3 #这些请求加在一块时间是多少
+        refresh-interval: 3 #时间设置 1：1秒钟可以处理多少请求
+        type:
+          - url
+          - httpmethod
+          # - user
+          - origin # 针对ip设置 限流
+    policy-list: #对token服务配限流
+      token:
+        - limit: 1
+          quota: 1
+          refresh-interval: 1
+          type:
+            - url
+            - httpmethod
+#配置限流
+
 
 #  只需要在yml 中配置zuul 连接超时，socket超时以及断溶超时即可，
 #  但需要注意的是，当hystrix的值小的时候，hystrix生效，当ribbon.ReadTimeout小的时候，ribbon生效
@@ -73,4 +107,4 @@ hystrix:
 
 ribbon:   #设置ribbon的超时时间小于zuul的超时时间
   ReadTimeout: 5000  #读取超时时间
-  ConnectTimeout: 5000  #好像这个没什么用  如果说有人知道这个是什么作用可以评论告诉我一下
+  ConnectTimeout: 50000  #好像这个没什么用  如果说有人知道这个是什么作用可以评论告诉我一下
