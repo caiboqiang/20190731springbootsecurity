@@ -25,7 +25,7 @@ import javax.sql.DataSource;
  * 1.需要继承一个spring的父类 AuthorizationServerConfigurerAdapter:授权服务器配置的适配器
  */
 @EnableRedisHttpSession //表示把session存到缓存
-//@EnableJdbcHttpSession //表示把session存到数据库
+@EnableJdbcHttpSession //表示把session存到数据库
 @Configuration
 @EnableAuthorizationServer //代表这个应用最为 Authorization 授权服务器
 public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter{
@@ -94,7 +94,7 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
     }
 
     public static void main(String[] args) {
-        System.out.println ( new BCryptPasswordEncoder (  ).encode ( "123456" ) );
+        System.out.println ( new BCryptPasswordEncoder(  ).encode ( "123456" ) );
     }
 
 }
