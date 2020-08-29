@@ -1,5 +1,7 @@
 package com.cai.redis;
 
+import org.redisson.Redisson;
+import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,15 @@ public class RedisConfig {
 	
 	@Autowired
 	 private RedisConnectionFactory redisConnectionFactory;
+		@Bean
+		public Redisson redisson(){
+			Config config = new Config ( );
+			config.useSingleServer().setAddress( "http://123.57.108.75:6379" );
+			config.useSingleServer().setDatabase ( 0 );
+			config.useSingleServer().setConnectionMinimumIdleSize(1);
+			config.useSingleServer ().setPassword ( "123456" );
+			return (Redisson)Redisson.create (config);
+		}
 
 	    /**
 	     * 实例化 RedisTemplate 对象
