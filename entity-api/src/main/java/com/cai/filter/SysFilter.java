@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * 拦截器 试用过滤器拦截服务请求
  */
-@Component
+//@Component
 public class SysFilter implements Filter {
     //初始化
     @Override

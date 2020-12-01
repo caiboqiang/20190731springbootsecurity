@@ -3,8 +3,8 @@ package com.cai.controller;
 import com.cai.redis.RedisService;
 import com.cai.utilEntity.FasterJsonTool;
 import com.cai.utilEntity.MessageBox;
-import org.redisson.Redisson;
-import org.redisson.api.RLock;
+//import org.redisson.Redisson;
+//import org.redisson.api.RLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,47 +25,47 @@ public class RedisLockController {
 
     @Autowired
     RedisTemplate redisTemplate;
-    @Autowired
-    Redisson redisson;
+//    @Autowired
+//    Redisson redisson;
 
     @Autowired
     private RedisService redisService;
-    @RequestMapping(value = "getRedisLock")
-    public Callable<MessageBox> getRedisLock(){
-        Callable<MessageBox> callable = new Callable<MessageBox>(){
-            @Override
-            public MessageBox call() throws Exception {
-
-                //TODO 1.生成一个钥匙 就用
-//                String lock = UUID.randomUUID ().toString ();
-//                //TODO  在保证出错释放锁
-//                Boolean ifAbsent = redisTemplate.opsForValue ().setIfAbsent (LOCK,lock,30l, TimeUnit.SECONDS );
-                //TODO 获取锁 分布式锁 用redisson
-                RLock rLock = redisson.getLock (LOCK);
-                //TODO 加锁
-                rLock.lock();
-                try {
-                //TODO 业务
-
-                }catch (Exception e){
-                    e.printStackTrace ();
-                }finally {
-                    //TODO 释放锁
-                    rLock.unlock ();
-//                    Object object = redisService.get (LOCK);
-//                    if(object != null){
-//                        String lockStr = (String)object;
-//                        if(lockStr.equals (lock)){
-//                            redisService.remove (LOCK);
-//                        }
-//                    }
-                }
-                //TODO 业务
-                return MessageBox.build ( "200","ok" );
-            }
-        };
-        return callable;
-    }
+//    @RequestMapping(value = "getRedisLock")
+//    public Callable<MessageBox> getRedisLock(){
+//        Callable<MessageBox> callable = new Callable<MessageBox>(){
+//            @Override
+//            public MessageBox call() throws Exception {
+//
+//                //TODO 1.生成一个钥匙 就用
+////                String lock = UUID.randomUUID ().toString ();
+////                //TODO  在保证出错释放锁
+////                Boolean ifAbsent = redisTemplate.opsForValue ().setIfAbsent (LOCK,lock,30l, TimeUnit.SECONDS );
+//                //TODO 获取锁 分布式锁 用redisson
+//                RLock rLock = redisson.getLock (LOCK);
+//                //TODO 加锁
+//                rLock.lock();
+//                try {
+//                //TODO 业务
+//
+//                }catch (Exception e){
+//                    e.printStackTrace ();
+//                }finally {
+//                    //TODO 释放锁
+//                    rLock.unlock ();
+////                    Object object = redisService.get (LOCK);
+////                    if(object != null){
+////                        String lockStr = (String)object;
+////                        if(lockStr.equals (lock)){
+////                            redisService.remove (LOCK);
+////                        }
+////                    }
+//                }
+//                //TODO 业务
+//                return MessageBox.build ( "200","ok" );
+//            }
+//        };
+//        return callable;
+//    }
 
 
     @RequestMapping(value = "/testRedisList")
@@ -76,10 +76,13 @@ public class RedisLockController {
                 try {
                     //TODO 业务
                     //TODO list 坐进 右出
-                    redisTemplate.boundListOps ( "TransferNotAllowed" ).leftPush ( FasterJsonTool.writeValueAsString(213783));
-                    redisTemplate.boundListOps ( "TransferNotAllowed" ).leftPush ( FasterJsonTool.writeValueAsString(896568));
-                    Object o1 = redisTemplate.boundListOps ( "TransferNotAllowed" ).leftPop ();
-                    Object o2 = redisTemplate.boundListOps ( "TransferNotAllowed" ).leftPop ();
+                    redisTemplate.boundListOps ( "TransferNotAllowed1111" ).leftPush (213783);
+                    redisTemplate.boundListOps ( "TransferNotAllowed1111" ).leftPush (896568);
+//                    Object o1 = redisTemplate.boundListOps ( "TransferNotAllowed1111" ).leftPop ();
+//                    Object o2 = redisTemplate.boundListOps ( "TransferNotAllowed1111" ).leftPop ();
+                    //map
+                    //redisTemplate.boundHashOps ("game_log").put (playId+":"+userId,hashMap );
+
                 }catch (Exception e){
                     e.printStackTrace ();
                 }

@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableZuulProxy
+@EnableZuulProxy //表示服务就是个网关了
 public class ZuulApplication5015 {
 
     public static void main(String[] args) {

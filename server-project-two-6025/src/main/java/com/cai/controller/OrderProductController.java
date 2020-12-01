@@ -6,6 +6,7 @@ import com.cai.service.OrderProductService;
 import com.cai.utilEntity.MessageBox;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,10 +53,11 @@ public class OrderProductController {
         return MessageBox.build("200","ok");
     }
 
+    @ApiOperation("测试接口2个服务互相调用")
     @GetMapping(value = "/getFeign")
     @HystrixCommand
     public String getFeign(){
-        //System.out.println("====="+ordersFeignClient.getFeginAll());
+        System.out.println("====="+ordersFeignClient.getFeignAll());
         OrderProduct orderProduct = new OrderProduct();
         orderProduct.setCapacity(1);
         orderProduct.setCount(1);

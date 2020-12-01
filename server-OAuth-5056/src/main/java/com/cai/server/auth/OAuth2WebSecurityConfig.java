@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity//让安全配置生效
 public class OAuth2WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+    //需要自己手动实现
     @Autowired
     UserDetailsService userDetailsService;
     @Bean
