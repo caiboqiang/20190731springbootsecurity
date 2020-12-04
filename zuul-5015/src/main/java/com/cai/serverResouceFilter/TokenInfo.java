@@ -29,7 +29,7 @@ public class TokenInfo {
      */
     private Date exp;
     /**
-     * 令牌对应的权限 用户的
+     * 令牌对应用户的权限
      */
     private String[] authorities;
 }
