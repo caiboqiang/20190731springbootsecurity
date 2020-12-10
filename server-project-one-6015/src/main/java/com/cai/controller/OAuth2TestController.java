@@ -11,8 +11,8 @@ public class OAuth2TestController {
 
     @ApiOperation("@AuthenticationPrincipal 获取用户名测试")
     @PostMapping(value = "/postTest")
-    public MessageBox postTest(@AuthenticationPrincipal String username){
+    public MessageBox postTest(@AuthenticationPrincipal String username){//@AuthenticationPrincipal
         System.out.println("==========={"+username+"}===========");
-        return MessageBox.build("200","postTest");
+        return MessageBox.build("200","postTest："+username);
     }
 }

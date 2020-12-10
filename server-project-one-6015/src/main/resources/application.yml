@@ -1,0 +1,16 @@
+###############  JWT 安全配置  ################################
+security:
+  oauth2:
+    client:
+      client-id: servr6015
+      client-secret: 123456
+    resource:
+      jwt:
+        key-uri: http://localhost:5056/oauth/token_key
+###############  sentinel 配置  ################################
+spring:
+  cloud:
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:9412

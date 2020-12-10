@@ -20,6 +20,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableCircuitBreaker //TODO 服务降级
 @ComponentScan("com.cai")
 @EnableHystrixDashboard
+//@EnableResourceServer
 public class ServerProjectUserApplication6035 {
     public static void main(String[] args) {
         SpringApplication.run(ServerProjectUserApplication6035.class, args);

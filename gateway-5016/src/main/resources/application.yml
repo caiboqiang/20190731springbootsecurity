@@ -1,0 +1,82 @@
+# ##################配置端口####################
+server:
+  port: 5016
+#####################配置注册中心###############
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5025/eureka
+####################配置服务名字#####################
+spring:
+  application:
+    name: Gateway
+#################################################### 配置JPA是因为把限流添加到数据了   后期可以改到redis
+  datasource:
+    url: jdbc:mysql://123.57.108.75:3306/cbqtest?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+  #################redis配置 做限流###################
+  redis:
+    database: 0
+    host: 123.57.108.75
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: -1
+        max-wait: -1
+        max-idle: 25
+        min-idle: 10
+    timeout: 5000
+##################路由转发###########################
+zuul:
+  routes:
+    token:
+      path: /token/**
+      serviceId: serverOAuth
+    one:
+      path: /myOne/**
+      serviceId: ServerProjectOne
+    myTwo:
+      path: /myTwo/**
+      serviceId: serverProjectTwo
+##########敏感头配置空 不拦截##########
+  sensitive-headers:
+##########ratelimit限流配置##########
+#  ratelimit:
+#    enabled: true #是否起作用
+#    repository: JPA #REDIS   JPA
+#    default-policy-list: #限流策略配置 对服务 不配默认所有  默认策略
+#      - limit: 1 #可以过的请求数
+#        quota: 3 #这些请求加在一块时间是多少
+#        refresh-interval: 3 #时间设置 1：1秒钟可以处理多少请求   refresh-interval:1(1秒只能有) limit:2(2个请求) quota：2(这2个请求时间加一块不能超过2秒)
+#        type:  #根据什么来 控制流量  url
+#          - url # 根据url来限流
+#          - httpmethod
+#          # - user # 根据用户来限流
+#          - origin # 根据ip设置 限流
+#    policy-list:
+#      token:  #对token服务配限流
+#      - limit: 1
+#        quota: 1
+#        refresh-interval: 5
+#        type:
+#          - url
+#          - httpmethod
+################################################
+ribbon:   #设置ribbon的超时时间小于zuul的超时时间
+  ReadTimeout: 30000  #读取超时时间
+  ConnectTimeout: 30000  #好像这个没什么用  如果说有人知道这个是什么作用可以评论告诉我一下
+###############  JWT 安全配置  ################################
+security:
+  oauth2:
+    client:
+      client-id: gateway
+      client-secret: 123456
+    resource:
+      jwt:
+        key-uri: http://localhost:5056/oauth/token_key

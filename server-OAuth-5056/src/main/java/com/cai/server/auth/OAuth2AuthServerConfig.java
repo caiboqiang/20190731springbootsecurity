@@ -3,7 +3,9 @@ package com.cai.server.auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -13,6 +15,9 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 //import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 //import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
 
@@ -36,6 +41,8 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
 
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     /**
      * 存储token默认存到内存
@@ -45,7 +52,16 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
     public TokenStore tokenStore(){
         //redis存储
         //return new RedisTokenStore(redisConnectionFactory);
-        return new JdbcTokenStore (dataSource);
+        //return new JdbcTokenStore (dataSource);//用mysql存令牌
+        return new JwtTokenStore(jwtTokenEnhancer());
+    }
+    @Bean
+    public JwtAccessTokenConverter jwtTokenEnhancer(){
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        //jwtAccessTokenConverter.setSigningKey("123456");//JWt 不是加密的用这个key 进行签名 用key对token进行签名
+        KeyStoreKeyFactory keyFactory = new KeyStoreKeyFactory(new ClassPathResource("jojo.key"),"123456".toCharArray());
+        jwtAccessTokenConverter.setKeyPair(keyFactory.getKeyPair("jojo"));
+        return jwtAccessTokenConverter;
     }
     /**
      * 用户登入的验证
@@ -54,7 +70,10 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore (tokenStore())
+        endpoints
+                //.userDetailsService(userDetailsService)
+                .tokenStore (tokenStore())
+        .tokenEnhancer(jwtTokenEnhancer())
        .authenticationManager (authenticationManager);
         //endpoints.authenticationManager(authenticationManager);
     }
@@ -68,7 +87,9 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
         //.checkTokenAccess("permitAll()");  //来验证请求一定是经过身份认证的
 
         //security.allowFormAuthenticationForClients();
-        security.checkTokenAccess("isAuthenticated()");
+        security
+                .tokenKeyAccess("isAuthenticated()")//把token暴漏出去
+                .checkTokenAccess("isAuthenticated()");
         //security.checkTokenAccess("permitAll()");
         //.checkTokenAccess("permitAll()"); //验证token一定是经过身份认证的
     }

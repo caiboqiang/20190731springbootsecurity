@@ -1,4 +1,4 @@
-package com.cai.config;
+package com.cai.configToken;
 
 
 import org.springframework.beans.factory.annotation.Configurable;
