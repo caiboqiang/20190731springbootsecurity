@@ -19,7 +19,7 @@ public class RedisService {
 	private RedisTemplate redisTemplate;
 
 	/**
-	 * 写入缓存
+	 * Set写入缓存
 	 * 
 	 * @param key
 	 * @param value
@@ -38,7 +38,7 @@ public class RedisService {
 	}
 
 	/**
-	 * 写入缓存设置时效时间
+	 * Set写入缓存设置时效时间
 	 * 
 	 * @param key
 	 * @param value
@@ -117,7 +117,7 @@ public class RedisService {
 	}
 
 	/**
-	 * 哈希 添加
+	 * hash 哈希 添加
 	 * 
 	 * @param key
 	 * @param hashKey
@@ -129,7 +129,7 @@ public class RedisService {
 	}
 
 	/**
-	 * 哈希获取数据
+	 * hash哈希获取数据
 	 * 
 	 * @param key
 	 * @param hashKey

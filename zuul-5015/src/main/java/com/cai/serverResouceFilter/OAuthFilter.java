@@ -68,7 +68,7 @@ public class OAuthFilter extends ZuulFilter {
             return null;
         }
         //忽略大小写判断
-        if(!StringUtils.startsWithIgnoreCase(authHeader,"bearer ")){
+        if(!StringUtils.startsWithIgnoreCase("authHeader","bearer ")){
             return null;
         }
 
@@ -88,10 +88,10 @@ public class OAuthFilter extends ZuulFilter {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.setBasicAuth("gateway", "123456");
-        //设置token
+        //设置token 只能用MultiValueMap
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("token", token);
-
+        //组装请求实体
         HttpEntity<MultiValueMap<String, String>> entity = new HttpEntity<>(params, headers);
         //发送请求
         ResponseEntity<TokenInfo> response = restTemplate.exchange(oauthServiceUrl, HttpMethod.POST, entity, TokenInfo.class);

@@ -11,14 +11,14 @@ spring:
   application:
     name: Zuul
 ####################################################
-  datasource:
-    url: jdbc:mysql://123.57.108.75:3306/cbqtest?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&serverTimezone=UTC
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    generate-ddl: true
-    show-sql: true
+#  datasource:
+#    url: jdbc:mysql://123.57.108.75:3306/cbqtest?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&serverTimezone=UTC
+#    username: root
+#    password: 123456
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    generate-ddl: true
+#    show-sql: true
 
   #################redis配置 做限流###################
   redis:
@@ -38,9 +38,9 @@ zuul:
   ribbon-isolation-strategy: thread #设置Hystrix隔离策略为线程池
   thread-pool.use-separate-thread-pools: true  #每个路由使用独立的线程池
   host:
-    connect-timeout-millis: 10000 #HTTP连接超时大于Hystrix的超时时间
-    socket-timeout-millis: 60000  #socket超时
-
+    connect-timeout-millis: 30000 #HTTP连接超时大于Hystrix的超时时间
+    socket-timeout-millis: 30000  #socket超时
+  #sensitive-headers:
   routes:
     token:
       #url: http://localhost:5056
@@ -66,7 +66,6 @@ zuul:
     #- /serviceeureka/getAll
     #- /**/getAll
 #忽略全部服务敏感头都可传递Cookie
-  sensitive-headers:
   ratelimit:
     enabled: true
     repository: JPA #REDIS
@@ -106,5 +105,5 @@ hystrix:
             timeoutInMilliseconds: 30000
 
 ribbon:   #设置ribbon的超时时间小于zuul的超时时间
-  ReadTimeout: 5000  #读取超时时间
-  ConnectTimeout: 50000  #好像这个没什么用  如果说有人知道这个是什么作用可以评论告诉我一下
+  ReadTimeout: 30000  #读取超时时间
+  ConnectTimeout: 30000  #好像这个没什么用  如果说有人知道这个是什么作用可以评论告诉我一下

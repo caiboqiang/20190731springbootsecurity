@@ -1,0 +1,9 @@
+###############  JWT 安全配置  ################################
+#security:
+#  oauth2:
+#    client:
+#      client-id: servr6035
+#      client-secret: 123456
+#    resource:
+#      jwt:
+#        key-uri: http://localhost:5056/oauth/token_key

@@ -1,8 +1,10 @@
 package com.cai.controller;
 
+import com.cai.config;
 import com.cai.entity.UserVo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+//import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 @Slf4j
@@ -14,7 +16,7 @@ public class TestController {
      * @return
      */
     @RequestMapping(value = "/getId")
-    public String getId(@AuthenticationPrincipal(expression = "#this.id") Long id){
+    public String getId( Long id){//@AuthenticationPrincipal(expression = "#this.id")
         log.info ( "============"+id);
         return "ok";
     }
@@ -25,8 +27,14 @@ public class TestController {
      * @return
      */
     @RequestMapping(value = "/getUserData")
-    public String getUserData(@AuthenticationPrincipal UserVo userVo){
+    public String getUserData( UserVo userVo){//@AuthenticationPrincipal
         log.info ( "============"+userVo.toString ());
         return "ok";
+    }
+
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext ( config.class);
+        annotationConfigApplicationContext.getBean ( "redisService" );
+        System.err.println (annotationConfigApplicationContext.getBean ( "redisService" ));
     }
 }

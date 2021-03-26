@@ -3,7 +3,9 @@ package com.cai.server.auth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -13,10 +15,12 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
-import org.springframework.stereotype.Component;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
+import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+//import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+//import org.springframework.session.jdbc.config.annotation.web.http.EnableJdbcHttpSession;
+
 
 import javax.sql.DataSource;
 
@@ -24,8 +28,8 @@ import javax.sql.DataSource;
  * 配置类
  * 1.需要继承一个spring的父类 AuthorizationServerConfigurerAdapter:授权服务器配置的适配器
  */
-@EnableRedisHttpSession //表示把session存到缓存
-@EnableJdbcHttpSession //表示把session存到数据库
+//@EnableRedisHttpSession //表示把session存到缓存
+//@EnableJdbcHttpSession //表示把session存到数据库
 @Configuration
 @EnableAuthorizationServer //代表这个应用最为 Authorization 授权服务器
 public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter{
@@ -37,14 +41,27 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
 
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     /**
      * 存储token默认存到内存
      * @return
      */
     @Bean
     public TokenStore tokenStore(){
-        //new RedisTokenStore ();
-        return new JdbcTokenStore (dataSource);
+        //redis存储
+        //return new RedisTokenStore(redisConnectionFactory);
+        //return new JdbcTokenStore (dataSource);//用mysql存令牌
+        return new JwtTokenStore(jwtTokenEnhancer());
+    }
+    @Bean
+    public JwtAccessTokenConverter jwtTokenEnhancer(){
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        //jwtAccessTokenConverter.setSigningKey("123456");//JWt 不是加密的用这个key 进行签名 用key对token进行签名
+        KeyStoreKeyFactory keyFactory = new KeyStoreKeyFactory(new ClassPathResource("jojo.key"),"123456".toCharArray());
+        jwtAccessTokenConverter.setKeyPair(keyFactory.getKeyPair("jojo"));
+        return jwtAccessTokenConverter;
     }
     /**
      * 用户登入的验证
@@ -53,17 +70,27 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore (tokenStore())
-        .authenticationManager (authenticationManager);
+        endpoints
+                //.userDetailsService(userDetailsService)
+                .tokenStore (tokenStore())
+        .tokenEnhancer(jwtTokenEnhancer())
+       .authenticationManager (authenticationManager);
+        //endpoints.authenticationManager(authenticationManager);
     }
 
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+//        security
+//                .tokenKeyAccess("permitAll()")// /oauth/token_key 安全配置
+//                .checkTokenAccess("permitAll()"); // /oauth/check_token 安全配置
+        //.checkTokenAccess("permitAll()");  //来验证请求一定是经过身份认证的
+
+        //security.allowFormAuthenticationForClients();
         security
-                .tokenKeyAccess("permitAll()")// /oauth/token_key 安全配置
-                .checkTokenAccess("permitAll()"); // /oauth/check_token 安全配置
-        //security.tokenKeyAccess("isAuthenticated()");//.checkTokenAccess("permitAll()");  //来验证请求一定是经过身份认证的
+                .tokenKeyAccess("isAuthenticated()")//把token暴漏出去
+                .checkTokenAccess("isAuthenticated()");
+        //security.checkTokenAccess("permitAll()");
         //.checkTokenAccess("permitAll()"); //验证token一定是经过身份认证的
     }
     /**
@@ -76,12 +103,13 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
         // mysql 读
         clients.jdbc (dataSource);
 
+        //硬编码
 //        clients.inMemory ().
 //                withClient ("adminApp"). //应用的用户名服务名
 //                secret (new BCryptPasswordEncoder ().encode("123456")). //应用的密码
 //                scopes ("read","write").//ACL权限控制
 //                accessTokenValiditySeconds (3600). //Token令牌有效时间
-//                resourceIds ("server-user"). //可以访问的资源服务器
+//                resourceIds ("server-6015"). //可以访问的资源服务器
 //                authorizedGrantTypes ("password"). //授权的方式 有4中授权类型
 //                and ().
 //                withClient ("adminService"). //应用的服务名
